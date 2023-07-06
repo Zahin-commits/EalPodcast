@@ -6,8 +6,12 @@ const layer = document.getElementById('layer_3');
 const img4 = document.getElementById('img4');
 const img5 = document.getElementById('img5');
 const img6 = document.getElementById('img6');
-
+const navBtn  = document.getElementById('navBtn');
+const header = document.querySelector('header');
+const navIcon = document.getElementById('navIcon');
+const navItem = document.querySelectorAll('header nav li')
 const form = document.getElementById('contactForm');
+const animeTerget = document.querySelectorAll('.animate');
 
 
 const func = async()=>{
@@ -19,8 +23,28 @@ console.log(data)
 text.innerText = data.quote;
 author.innerText = `-${data.author}`;
 }
-
 func()
+
+function cheakbox(){
+   let trigger = window.innerHeight / 5 * 4;
+   
+   animeTerget.forEach(box => {
+     const boxtop = box.getBoundingClientRect().top;
+   
+     if(boxtop < trigger){
+       box.classList.add('show','animate__fadeInLeft');
+       box.classList.remove('animate__fadeOutRight');
+     }
+     else{
+       box.classList.remove('show','animate__fadeInLeft');
+       box.classList.add('animate__fadeOutRight');
+     }
+
+   })
+   };
+
+   cheakbox()
+    
 
 window.addEventListener("scroll",()=>{ 
 const Y = window.scrollY;
@@ -32,7 +56,6 @@ layer.style.top = Y/1.3+'px';
 img4.style.bottom = -Y/2+'px'
 img5.style.bottom = -Y/3+'px' */
 
-
 bg.style.transform = `translateY( ${Y/1.5}px)`;
 //meteor.style.transform =`translateY(${Y/1.2}px)`;
 meteor.style.transform = `translate(-${Y/4}px,${Y/1.2}px)`;
@@ -40,6 +63,7 @@ layer.style.transform = `translateY(${Y/1.3}px)`;
 img4.style.transform = `translateY(${Y/2}px)`;
 img5.style.transform = `translateY(${Y/3}px)`;
 
+cheakbox()
 })
 
 const  sendMail = async (e)=>{
@@ -59,8 +83,8 @@ form.addEventListener('submit',async (e)=>{
  const message = document.getElementById('message').value;
 
  try {
-    const serviceID = 'service_id';
-    const templateID = 'template_id';
+    const serviceID = 'service_v8t85q9';
+    const templateID = 'template_m270kuk';
     const params = {name,email,message}
     
      const res = await emailjs.send(serviceID, templateID,params);
@@ -78,17 +102,47 @@ form.addEventListener('submit',async (e)=>{
         console.log(error)
      }
 
+});
+
+navBtn.addEventListener('click',()=>{
+ header.classList.toggle('active');
+ if(header.classList.length == 1){
+   navIcon.src = "./images/icons/close-outline.svg";
+ }else{
+   navIcon.src = "./images/icons/menu-outline.svg";
+ };
+});
+
+navItem.forEach(element => {
+   element.addEventListener('click',()=>{
+   header.classList.remove('active');
+
+   if(header.classList.length == 1){
+      navIcon.src = "./images/icons/close-outline.svg";
+    }else{
+      navIcon.src = "./images/icons/menu-outline.svg";
+    };
 })
+});
 
-/*  try {
-const serviceID = 'service_60sw38k';
-const templateID = 'template_az18yyi';
-const params = {name,email,message}
 
- const res = await emailjs.send(serviceID, templateID,params);
- emailjs.send(serviceID, templateID, params,"5xLsFLOPz7LCMFe2w");
 
- console.log(res);
- } catch (error) {
-    console.log(error)
+
+/*  
+ for on scroll animation
+=========================
+function cheakbox(){
+let trigger = window.innerHeight / 5 * 4;
+
+boxs.forEach(box => {
+  const boxtop = box.getBoundingClientRect().top;
+
+  if(boxtop < trigger){
+    box.classList.add('show')
+  }
+  else{
+    box.classList.remove('show')
+  }
+})
+};
  } */

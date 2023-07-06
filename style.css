@@ -7,6 +7,7 @@
  padding: 0%;
  margin: 0%;
  box-sizing: border-box;
+ scroll-behavior: smooth;
 }
 
 body{
@@ -21,6 +22,47 @@ body{
  align-items: center; */
 
  overflow-x: hidden;
+}
+
+#navBtn{
+ display: none;
+}
+
+header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #38346dc4;
+  padding: 8px 0px;
+  z-index: 50;
+  backdrop-filter: blur(5px);
+  transition: all 500ms ease-in-out;
+}
+
+header nav {
+  margin: auto;
+  width: 640px;
+}
+
+header nav ul{
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ list-style: none;
+}
+
+header  nav ul a{
+ text-transform: uppercase;
+ color: #f6f7fbc9;
+ text-decoration: none;
+ font-size: 1.2rem;
+ font-family: 'Poppins', sans-serif;
+ font-weight: 500;
+ transition: all 0.15s ease-in;
+}
+
+header  nav ul a:hover{
+ color: #7ff5ff;
 }
 
 .banner{
@@ -69,10 +111,6 @@ img{
  position: absolute;
 }
 
-.quote_contanter{
- margin-top: 10px;
- margin-bottom: 20px;
-}
 
 .layer-3 h1{
  /*  text-shadow: 0 0 10px #ffffffc7,
@@ -88,12 +126,20 @@ img{
  font-size: 3rem;
    margin-top: 80px;
    line-height: 0.5;
+   animation-delay: 0.1s;
 }
 
 .layer-3 .title2{
  margin-top: 0px;
  font-size: 5rem;
+ animation-delay: 0.2s;
 }
+
+.quote_contanter{
+  padding-inline: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+ }
 
 .layer-3 p{
 color: #7ff5ff;
@@ -104,10 +150,13 @@ color: #7ff5ff;
 #quote{
  margin-top: 15px;
  margin-block: 0px;
+ animation-delay: 0.3s;
 }
 
 #author{
   margin-block: 0px;
+  margin-top: 8px;
+ animation-delay: 0.4s;
 }
 
 .layer-3 .spotifyBtn{ 
@@ -120,11 +169,27 @@ color: #7ff5ff;
  background-color: #7ff5ff;
  text-transform: uppercase;
  border-radius: 30px;
+ animation-delay: 0.5s;
+ transition: all 0.2s ease-in;
  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.layer-3 .spotifyBtn:hover{
+ transform: scale(1.05);
+ color: white;
+ background-color: #00da5b; 
 }
 
 .about{
   margin-top: 50px;
+}
+
+.animate{
+ opacity: 0;
+}
+
+.animate.show{
+ opacity: 1;
 }
 
 .contact{
@@ -136,7 +201,9 @@ color: #7ff5ff;
 }
 
 .contact h1{
+ opacity: 0;
  margin-top: 20px;
+ animation-delay: 0.1s;
 }
 
 .contact form{
@@ -149,6 +216,7 @@ color: #7ff5ff;
 }
 
 .contact form input{
+ opacity: 0;
  color: white;
  border: none;
  outline: none;
@@ -164,7 +232,18 @@ color: #7ff5ff;
  opacity: 0.7;
 }
 
+.contact form input#name{
+animation-delay: 0.2s;
+}
+.contact form input#email{
+  animation-delay: 0.3s;
+}
+.contact form input#message{
+  animation-delay: 0.4s;
+}
+
 .contact button{
+ opacity: 0;
  font-size: 20px;
  text-transform: uppercase;
  border: none;
@@ -175,6 +254,7 @@ color: #7ff5ff;
  margin-inline: auto;
  color: #1D1D4F;
  background-color: #7ff5ff;
+ animation-delay: 0.5s;
 }
 
 
@@ -204,12 +284,53 @@ footer{
  display: flex;
  align-items:center;
  justify-content: space-between;
+ margin-bottom: 10px;
  }
 
  .socialMedia .icon{
    fill: #7ff5ff;
    width: 30px;
+   transition: all 0.2s ease-in-out;
  }
+
+ .socialMedia .icon:hover{
+  width: 40px;  
+ }
+
+ .icon.spotify:hover{
+  fill: #918CF7;
+ }
+
+ .icon.gPod:hover .path1{
+  fill: #ffba00;
+ }
+ .icon.gPod:hover .path2{
+  fill: #0066da;
+ }
+ .icon.gPod:hover .path3{
+  fill: #4285f4;
+ }
+ .icon.gPod:hover .path4{
+  fill: #ffba00;
+ }
+ 
+ .icon.gPod:hover .path5{
+  fill: #ea4435;
+ }
+ .icon.gPod:hover .path6{
+  fill: #ffba00;
+ }
+ .icon.gPod:hover .path7{
+  fill: #00ac47;
+ }
+
+.icon.soundcloud:hover{
+ fill: #ff9800;
+}
+
+.icon.telegram:hover{
+  fill: #2FA3D9;
+}
 
  footer #credit a{
  color: inherit;
@@ -230,14 +351,82 @@ footer #credit{
  bottom: 0px;
 }
 
-@media(max-width: 520px) {
+
+/* 
+  ====================== 
+   MEDIA QUERRY
+  ======================
+  */
+
+
+@media(max-width: 600px) {
+
+  /* 
+  ====================== 
+   mobile nav bar 
+  ======================
+  */
+
+  
+#navBtn{
+ position: fixed;
+ top: 0;
+ right: 11px;
+ height: 50px;
+ width: 50px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: transparent;
+ border: none;
+ outline: none;
+ z-index: 60;
+ }
+
+ #navBtn img{ 
+ filter: invert(1); 
+ width: 35px;
+ }
+
+
+  header{
+  transform: translateX(100vw);
+  }
+
+  header.active{
+    transform: translateX(0vw);
+    }
+  
+  header nav {
+    margin: auto;
+    width: 100%;
+  }
+  
+  header nav ul{
+    height: 100vh;
+   flex-direction: column;
+   justify-content: center;
+  }
+
+  header  nav ul a{
+    display: inline-block;
+    margin: 10px;
+   font-size: 2rem;
+  }
+  /* 
+  ====================== 
+   mobile nav bar 
+  ======================
+  */
+
+
 .banner{
  height: 95vh;
 }
 
 .banner img{
 width: 150%;
- transition: 0.1s all linear;
+ transition:all 0.1s  linear;
 }
 
 .layer-3{
@@ -246,7 +435,7 @@ width: 150%;
   align-items: center;
   justify-content: center;
   height: 90vh;
-  transition: 0.1s all linear;
+  transition: all 0.1s  linear;
  }
 
 
@@ -318,7 +507,6 @@ width: 150%;
    .socialMedia .icon{
      width: 35px;
    }
-
 
    footer #subtitle{
    font-size: 15px;
